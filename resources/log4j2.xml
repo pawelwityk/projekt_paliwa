@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" strict="true" name="XMLConfig"
+               packages="org.apache.logging.log4j.test">
+  <Properties>
+    <Property name="filename">var/log/logger.log</Property>
+  </Properties>
+  <Filter type="ThresholdFilter" level="info"/>
+ 
+  <Appenders>
+    <Appender type="Console" name="STDOUT">
+      <Layout type="PatternLayout" pattern="%d %highlight{%p} %style{%C{1.} [%t] %m}{bold,green}%n"/>
+      <Filters>
+        <Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>
+        <Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY" onMismatch="ACCEPT"/>
+      </Filters>
+    </Appender>
+    <Appender type="File" name="File" fileName="${filename}">
+      <Layout type="PatternLayout">
+        <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+      </Layout>
+    </Appender>
+  </Appenders>
+ 
+  <Loggers>
+    <Logger name="org.apache.logging.log4j.test1" level="info" additivity="false">
+      <Filter type="ThreadContextMapFilter">
+        <KeyValuePair key="test" value="123"/>
+      </Filter>
+      <AppenderRef ref="STDOUT"/>
+      <AppenderRef ref="File"/>
+    </Logger>
+ 
+    <Root level="debug">
+      <AppenderRef ref="STDOUT"/>
+      <AppenderRef ref="File"/>
+    </Root>
+  </Loggers>
+ 
+</Configuration>

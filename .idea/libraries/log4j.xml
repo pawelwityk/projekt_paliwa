@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="log4j">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/lib/log4j" />
+      <root url="jar://$PROJECT_DIR$/lib/log4j/log4j-api-2.19.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/log4j/log4j-core-2.19.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="file://$PROJECT_DIR$/lib/log4j" />
+      <root url="jar://$PROJECT_DIR$/lib/log4j/log4j-api-2.19.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/log4j/log4j-core-2.19.0-sources.jar!/" />
     </SOURCES>
-    <jarDirectory url="file://$PROJECT_DIR$/lib/log4j" recursive="false" />
-    <jarDirectory url="file://$PROJECT_DIR$/lib/log4j" recursive="false" type="SOURCES" />
   </library>
 </component>

@@ -5,7 +5,7 @@
     <Property name="filename">var/log/logger.log</Property>
   </Properties>
   <Filter type="ThresholdFilter" level="info"/>
- 
+
   <Appenders>
     <Appender type="Console" name="STDOUT">
       <Layout type="PatternLayout" pattern="%d %highlight{%p} %style{%C{1.} [%t] %m}{bold,green}%n"/>

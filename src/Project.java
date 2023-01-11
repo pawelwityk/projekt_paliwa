@@ -14,7 +14,7 @@ import java.util.*;
 
 
 public class Project {
-    private final static Logger log = LogManager.getLogger();
+    private final static Logger log = LogManager.getLogger(Project.class);
     private final static String file = "names.properties";
     private final static String address = "https://www.lotos.pl/145/type,oil_95/dla_biznesu/hurtowe_ceny_paliw/archiwum_cen_paliw";
     public static void main(String[] args) {
@@ -77,10 +77,10 @@ public class Project {
 
         log.info("Added entries to properties");
 
-        al.forEach(line -> {
-            for (Object object : line)
-                System.out.println(object);
-        });
+//        al.forEach(line -> {
+//            for (Object object : line)
+//                System.out.println(object);
+//        });
         try {
             OutputStream outputStream = new FileOutputStream(file);
             nameProps.store(outputStream, address);

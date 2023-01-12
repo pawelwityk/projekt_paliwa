@@ -13,8 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-public class Project {
-    private final static Logger log = LogManager.getLogger(Project.class);
+public class Main {
+    private final static Logger log = LogManager.getLogger(Main.class);
     private final static String file = "names.properties";
     private final static String address = "https://www.lotos.pl/145/type,oil_95/dla_biznesu/hurtowe_ceny_paliw/archiwum_cen_paliw";
     public static void main(String[] args) {
@@ -29,7 +29,7 @@ public class Project {
                     .header("Content-Type", "text/html; charset=ISO-8859-1").referrer("https://www.google.com")
                     .ignoreContentType(true).maxBodySize(0).timeout(600000).execute();
             log.info("Successfully connected to" + url);
-            log.info("Parsing the content");
+            log.debug("Parsing the content");
             doc = r.parse();
         }
         catch (IOException e) {
@@ -38,7 +38,7 @@ public class Project {
             System.exit(1);
         }
 
-        log.info("Content has been successfully parsed");
+        log.debug("Content has been successfully parsed");
         Elements tmp = doc.select("table[cellspacing=0][cellpadding=0]");
         log.info("Found " + tmp.size() + " tables");
         if (tmp.size() != 1) {
@@ -49,9 +49,9 @@ public class Project {
         log.info("Found " + tmp.size() / 4 + " elements");
 
         ArrayList<List<String>> al = new ArrayList<>();
-        log.info("Created ArrayList");
+        log.debug("Created ArrayList");
         Properties nameProps = new Properties();
-        log.info("Created properties object");
+        log.debug("Created properties object");
 
         int x = 0;
 
@@ -69,7 +69,7 @@ public class Project {
         nameProps.setProperty("data", "" + al.size());
 
         log.info("Added date and number of rows in table to properties file");
-        log.info("Added data to ArrayList");
+        log.debug("Added data to ArrayList");
 
         for (int i=0; i<al.size(); i++) {
             nameProps.setProperty("entry" + i, al.get(i).toString());
@@ -77,10 +77,6 @@ public class Project {
 
         log.info("Added entries to properties");
 
-//        al.forEach(line -> {
-//            for (Object object : line)
-//                System.out.println(object);
-//        });
         try {
             OutputStream outputStream = new FileOutputStream(file);
             nameProps.store(outputStream, address);
@@ -91,5 +87,6 @@ public class Project {
             System.exit(1);
         }
         log.info("Successfully saved properties file");
+        javax.swing.SwingUtilities.invokeLater(() -> GraphicInterface.createAndShowGUI(al));
     }
 }

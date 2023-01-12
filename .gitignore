@@ -1,4 +1,4 @@
-# Project exclude paths
+# Main exclude paths
 /out/
 names.properties
 /var/log/logger.log

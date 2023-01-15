@@ -87,6 +87,6 @@ public class Main {
             System.exit(1);
         }
         log.info("Successfully saved properties file");
-        javax.swing.SwingUtilities.invokeLater(() -> GraphicInterface.createAndShowGUI(al));
+        javax.swing.SwingUtilities.invokeLater(() -> GraphicInterfaceTable.createAndShowGUI(al));
     }
 }

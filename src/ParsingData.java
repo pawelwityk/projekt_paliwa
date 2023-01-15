@@ -12,6 +12,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
 public class ParsingData {
 
     private final static String file = "names.properties";

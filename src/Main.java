@@ -15,7 +15,7 @@ public class Main {
 
         ArrayList<List<String>> al = ParsingData.parseData();
 
-        log.debug("Data has been sucessfully got");
+        log.debug("Data has been successfully got");
         log.debug("Creating graphic interface");
 
         javax.swing.SwingUtilities.invokeLater(() -> GraphicInterfaceTable.createAndShowGUI(al));

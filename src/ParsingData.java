@@ -20,7 +20,7 @@ public class ParsingData {
     private final static String address = "https://www.lotos.pl/145/type,oil_95/dla_biznesu/hurtowe_ceny_paliw/archiwum_cen_paliw";
 
     private final static Logger log = LogManager.getLogger(ParsingData.class);
-    public static ArrayList<List<String>> parseData() {
+    public static List<Object[]> parseData() {
         Connection.Response r;
         Document doc = null;
         URL url;
@@ -51,8 +51,8 @@ public class ParsingData {
         tmp = Objects.requireNonNull(tmp.first()).select("td");
         log.info("Found " + tmp.size() / 4 + " elements");
 
-        ArrayList<List<String>> al = new ArrayList<>();
-        log.debug("Created ArrayList");
+        List<Object[]> list = new ArrayList<>();
+        log.debug("Created list of objects");
         Properties nameProps = new Properties();
         log.debug("Created properties object");
 
@@ -61,21 +61,20 @@ public class ParsingData {
         nameProps.setProperty("date", new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date()));
 
         for (int i = tmp.size() / 4; i > 0; i--) {
-            String[] temp = {"", "", "", ""};
+            Object[] temp = {"", "", "", ""};
             for (int j = 0; j < 4; j++) {
                 temp[j] = tmp.get(x).text();
-                System.out.println(temp[j]);
                 x++;
             }
-            al.add(Arrays.stream(temp).toList());
+            list.add(temp);
         }
-        nameProps.setProperty("data", "" + al.size());
+        nameProps.setProperty("data", "" + list.size());
 
         log.info("Added date and number of rows in table to properties file");
-        log.debug("Added data to ArrayList");
+        log.debug("Added data to List");
 
-        for (int i=0; i<al.size(); i++) {
-            nameProps.setProperty("entry" + i, al.get(i).toString());
+        for (int i=0; i<list.size(); i++) {
+            nameProps.setProperty("entry" + i, Arrays.toString(list.get(i)));
         }
 
         log.info("Added entries to properties");
@@ -90,6 +89,6 @@ public class ParsingData {
             System.exit(1);
         }
         log.info("Successfully saved properties file");
-        return(al);
+        return(list);
     }
 }

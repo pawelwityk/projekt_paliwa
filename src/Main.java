@@ -1,7 +1,6 @@
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -13,11 +12,11 @@ public class Main {
 
         log.debug("Trying to get data from ParsingData class");
 
-        ArrayList<List<String>> al = ParsingData.parseData();
+        List<Object[]> list = ParsingData.parseData();
 
         log.debug("Data has been successfully got");
         log.debug("Creating graphic interface");
 
-        javax.swing.SwingUtilities.invokeLater(() -> GraphicInterfaceTable.createAndShowGUI(al));
+        javax.swing.SwingUtilities.invokeLater(() -> GraphicInterfaceTable.createAndShowGUI(list));
     }
 }

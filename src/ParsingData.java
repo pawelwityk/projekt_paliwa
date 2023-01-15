@@ -50,7 +50,7 @@ public class ParsingData {
             System.exit(1);
         }
         objects = Objects.requireNonNull(objects.first()).select("tr");
-        log.info("Found " + objects.size() + " elements");
+        log.info("Found " + (objects.size() - 1) + " elements");
 
         List<Object[]> list = new ArrayList<>();
         log.debug("Created list of objects");

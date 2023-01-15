@@ -14,9 +14,13 @@ import java.util.*;
 
 
 public class Main {
+
     private final static Logger log = LogManager.getLogger(Main.class);
+
     private final static String file = "names.properties";
+
     private final static String address = "https://www.lotos.pl/145/type,oil_95/dla_biznesu/hurtowe_ceny_paliw/archiwum_cen_paliw";
+
     public static void main(String[] args) {
         Response r;
         Document doc = null;

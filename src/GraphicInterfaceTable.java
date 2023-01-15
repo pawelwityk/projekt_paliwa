@@ -10,12 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GraphicInterfaceTable extends JFrame {
+
     private final static Logger log = LogManager.getLogger(GraphicInterfaceTable.class);
+
     public static void createAndShowGUI(ArrayList<List<String>> data) {
-        log.info("Created AcionListener");
-        ActionListener myActionListener = e -> {
-            String buttonPressed = e.getActionCommand();
-        };
 
         Object[] column = {"Data","Cena hurtowa","Opłata paliwowa","Akcyza"};
         DefaultTableModel tableModel = new DefaultTableModel(column, 0);

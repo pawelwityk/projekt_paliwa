@@ -7,10 +7,20 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.GridLayout;
 import java.util.List;
 
+/**
+ * A class used to display table containing specific data
+ */
 public class GraphicInterfaceTable extends JFrame {
 
+    /**
+     * A logger created to verify programme correctness
+     */
     private final static Logger log = LogManager.getLogger(GraphicInterfaceTable.class);
 
+    /**
+     * This method displays GUI containing table and scroller
+     * @param data Data transferred from other class expected to show in the table
+     */
     public static void createAndShowGUI(List<Object[]> data) {
         //creating column descriptions and table model
         log.debug("Creating descriptions of the columns");

@@ -3,6 +3,7 @@ import org.apache.logging.log4j.Logger;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.FileOutputStream;
@@ -17,10 +18,11 @@ public class ParsingData {
 
     private final static String file = "names.properties";
 
-    private final static String address = "https://www.lotos.pl/145/type,oil_95/dla_biznesu/hurtowe_ceny_paliw/archiwum_cen_paliw";
-
+    /**
+     * A logger created to verify programme correctness
+     */
     private final static Logger log = LogManager.getLogger(ParsingData.class);
-    public static List<Object[]> parseData() {
+    public static List<Object[]> parseData(String address) {
         Connection.Response r;
         Document doc = null;
         URL url;
@@ -42,32 +44,30 @@ public class ParsingData {
         }
 
         log.debug("Content has been successfully parsed");
-        Elements tmp = doc.select("table[cellspacing=0][cellpadding=0]");
-        log.info("Found " + tmp.size() + " tables");
-        if (tmp.size() != 1) {
+        Elements objects = doc.select("table[cellspacing=0][cellpadding=0]");
+        log.info("Found " + objects.size() + " tables");
+        if (objects.size() != 1) {
             log.fatal("It must equal 1.");
             System.exit(1);
         }
-        tmp = Objects.requireNonNull(tmp.first()).select("td");
-        log.info("Found " + tmp.size() / 4 + " elements");
+        objects = Objects.requireNonNull(objects.first()).select("tr");
+        log.info("Found " + objects.size() + " elements");
 
         List<Object[]> list = new ArrayList<>();
         log.debug("Created list of objects");
         Properties nameProps = new Properties();
         log.debug("Created properties object");
 
-        int x = 0;
-
         nameProps.setProperty("date", new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date()));
 
-        for (int i = tmp.size() / 4; i > 0; i--) {
+        for (int i = 1; i < objects.size(); i++) {
             Object[] temp = {"", "", "", ""};
             for (int j = 0; j < 4; j++) {
-                temp[j] = tmp.get(x).text();
-                x++;
+                temp[j] = objects.get(i).select("td").get(j).text();
             }
             list.add(temp);
         }
+
         nameProps.setProperty("data", "" + list.size());
 
         log.info("Added date and number of rows in table to properties file");

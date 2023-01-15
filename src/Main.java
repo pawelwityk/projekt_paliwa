@@ -14,7 +14,7 @@ public class Main {
 
         List<Object[]> list = ParsingData.parseData();
 
-        log.debug("Data has been successfully got");
+        log.debug("Data has been successfully transferred");
         log.debug("Creating graphic interface");
 
         javax.swing.SwingUtilities.invokeLater(() -> GraphicInterfaceTable.createAndShowGUI(list));

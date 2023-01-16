@@ -5,7 +5,9 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 public class GraphicInterfaceMain extends JFrame {
+
     private final static Logger log = LogManager.getLogger(GraphicInterfaceTable.class);
+
     public static void createAndShowGUI() {
         log.info("Created ActionListener");
         ActionListener myActionListener = e -> {

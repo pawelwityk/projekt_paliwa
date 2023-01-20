@@ -3,9 +3,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
 import java.awt.GridLayout;
-import java.io.FileReader;
 import java.util.List;
 
 /**
@@ -26,7 +24,6 @@ public class GraphicInterfaceTable extends JFrame {
      */
 
     public static void createAndShowGUI(List<Object[]> data) {
-
         //creating column descriptions and table model
         log.debug("Creating descriptions of the columns");
         Object[] column = {"Data","Cena hurtowa","Opłata paliwowa","Akcyza"};

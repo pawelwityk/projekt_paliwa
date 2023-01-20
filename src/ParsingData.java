@@ -12,7 +12,9 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-
+/**
+ * This class is meant to parse data from webpage. Specifically, one table is meant to be parsed.
+ */
 public class ParsingData {
 
     private final static String file = "names.properties";
@@ -86,8 +88,8 @@ public class ParsingData {
         log.info("Added date and number of rows in table to properties file");
         nameProps.setProperty("data", "" + list.size());
 
-        for (int i=0; i<list.size(); i++) {
-            nameProps.setProperty("entry" + i, Arrays.toString(list.get(i)));
+        for (Object[] value : list) {
+            nameProps.setProperty(value[0].toString(), Arrays.toString(value));
         }
 
         log.info("Added entries to properties");

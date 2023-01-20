@@ -6,13 +6,12 @@ import java.awt.event.ActionListener;
 
 public class GraphicInterfaceMain extends JFrame {
 
-    private final static Logger log = LogManager.getLogger(GraphicInterfaceTable.class);
+    private final static Logger log = LogManager.getLogger(GraphicInterfaceMain.class);
 
     public static void createAndShowGUI() {
         log.info("Created ActionListener");
         ActionListener myActionListener = e -> {
             String buttonPressed = e.getActionCommand();
         };
-
     }
 }

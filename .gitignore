@@ -1,4 +1,5 @@
 # Main exclude paths
-/out/
+out/
 names.properties
-/var/log/logger.log
+var/log/logger.log
+resources/META-INF

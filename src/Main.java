@@ -23,6 +23,7 @@ public class Main {
         log.debug("Trying to get data from ParsingData class");
         List<Object[]> list = ParsingData.parseData(address);
         log.debug("Data has been successfully transferred");
+        //GraphicInterfaceMain.createAndShowGUI();
 
         log.debug("Creating graphic interface");
         javax.swing.SwingUtilities.invokeLater(() -> GraphicInterfaceTable.createAndShowGUI(list));

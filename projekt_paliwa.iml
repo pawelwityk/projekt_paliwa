@@ -11,5 +11,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jSoup" level="project" />
     <orderEntry type="library" name="log4j" level="project" />
+    <orderEntry type="library" name="JFreeChart" level="project" />
   </component>
 </module>

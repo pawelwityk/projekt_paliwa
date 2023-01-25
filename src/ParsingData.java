@@ -99,7 +99,7 @@ public class ParsingData {
             nameProps.store(outputStream, address);
         }
         catch (IOException e) {
-            log.error("Error creating file ! Exception: " + e.getLocalizedMessage(), e);
+            log.error("Error creating file ! Exception: " + e.getLocalizedMessage());
             System.exit(1);
         }
         log.info("Successfully saved properties file");

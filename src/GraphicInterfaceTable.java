@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -98,7 +97,6 @@ public class GraphicInterfaceTable extends JFrame {
         log.debug("Setting up JTable");
         jt.setDragEnabled(false);
         jt.setDefaultEditor(Object.class, null);
-        jt.setAutoCreateRowSorter(true);
         jt.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
         //parameters of the panel
@@ -112,13 +110,13 @@ public class GraphicInterfaceTable extends JFrame {
         ActionListener mouseClickedMonth = e -> {
             String selected = (String) jcMonths.getSelectedItem();
             if(isMonthFiltered) {
-                System.out.println("Dane zostały już przefiltrowane");
+                log.error("Dane zostały już przefiltrowane !");
+                JOptionPane.showMessageDialog(null, "Dane zostały już przefiltrowane !", "Błąd", JOptionPane.ERROR_MESSAGE);
             }
             else if(!filteredYears.isEmpty()){
                 filteredMonths.clear();
                 for (Object[] datum: filteredYears) {
                     if (Objects.equals(LocalDate.parse(datum[0].toString()).getMonth().toString(), selected)) {
-                        System.out.println(Arrays.toString(datum));
                         filteredMonths.add(datum);
                         dataToShow.add(datum);
                     }
@@ -130,7 +128,6 @@ public class GraphicInterfaceTable extends JFrame {
                 dataToShow.clear();
                 for (Object[] datum: data) {
                     if (Objects.equals(LocalDate.parse(datum[0].toString()).getMonth().toString(), selected)) {
-                        System.out.println(Arrays.toString(datum));
                         filteredMonths.add(datum);
                     }
                 }
@@ -140,14 +137,14 @@ public class GraphicInterfaceTable extends JFrame {
         ActionListener mouseClickedYear = e -> {
             String selected = (String) jcYears.getSelectedItem();
             if(isYearFiltered) {
-                System.out.println("Dane zostały już przefiltrowane");
+                log.error("Dane zostały już przefiltrowane !");
+                JOptionPane.showMessageDialog(null, "Dane zostały już przefiltrowane !", "Błąd", JOptionPane.ERROR_MESSAGE);
             }
             else if(!filteredMonths.isEmpty()){
                 filteredYears.clear();
                 dataToShow.clear();
                 for (Object[] datum: filteredMonths) {
                     if (String.valueOf(LocalDate.parse(datum[0].toString()).getYear()).equals(selected)) {
-                        System.out.println(Arrays.toString(datum));
                         filteredYears.add(datum);
                         dataToShow.add(datum);
                     }
@@ -159,7 +156,6 @@ public class GraphicInterfaceTable extends JFrame {
                 dataToShow.clear();
                 for (Object[] datum: data) {
                     if (String.valueOf(LocalDate.parse(datum[0].toString()).getYear()).equals(selected)) {
-                        System.out.println(Arrays.toString(datum));
                         filteredYears.add(datum);
                     }
                 }
@@ -237,7 +233,7 @@ public class GraphicInterfaceTable extends JFrame {
         //parameters of the frame
         log.debug("Setting up JFrame");
         jf.setLayout(new BorderLayout());
-        jf.setResizable(true);
+        jf.setResizable(false);
         jf.setLocationRelativeTo(null);
         jf.getContentPane().add(BorderLayout.CENTER, jp);
         jf.getContentPane().add(BorderLayout.SOUTH, jp2);

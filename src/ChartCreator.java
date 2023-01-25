@@ -15,7 +15,7 @@ public class ChartCreator extends ApplicationFrame {
     public ChartCreator(String applicationTitle, List<Object[]> data) {
         super(applicationTitle);
         JFreeChart chart = ChartFactory.createLineChart("Zmienność ceny hurtowej benzyny w zadanym czasie",
-                "Data", "Cena hurtowa paliwa", createDataSet(data), PlotOrientation.VERTICAL,
+                "Data", "Cena hurtowa paliwa[zł]", createDataSet(data), PlotOrientation.VERTICAL,
                 true, true, false);
         CategoryAxis axis = chart.getCategoryPlot().getDomainAxis();
         axis.setCategoryLabelPositions(CategoryLabelPositions.UP_90);

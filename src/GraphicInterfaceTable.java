@@ -205,6 +205,12 @@ public class GraphicInterfaceTable extends JFrame {
                 RefineryUtilities.centerFrameOnScreen( chart );
                 chart.setVisible( true );
             }
+            else if(filteredYears.isEmpty() && filteredMonths.isEmpty()) {
+                ChartCreator chart = new ChartCreator("Hurtowe ceny paliwa", data);
+                chart.pack( );
+                RefineryUtilities.centerFrameOnScreen( chart );
+                chart.setVisible( true );
+            }
             else {
                 ChartCreator chart = new ChartCreator("Hurtowe ceny paliwa", dataToShow);
                 chart.pack( );
@@ -233,7 +239,7 @@ public class GraphicInterfaceTable extends JFrame {
         //parameters of the frame
         log.debug("Setting up JFrame");
         jf.setLayout(new BorderLayout());
-        jf.setResizable(false);
+        jf.setResizable(true);
         jf.setLocationRelativeTo(null);
         jf.getContentPane().add(BorderLayout.CENTER, jp);
         jf.getContentPane().add(BorderLayout.SOUTH, jp2);

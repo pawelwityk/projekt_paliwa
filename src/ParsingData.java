@@ -76,7 +76,7 @@ public class ParsingData {
 
         nameProps.setProperty("date", new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date()));
         //saving data to the list
-        for (int i = 1; i < objects.size(); i++) {
+        for (int i = objects.size() - 1; i > 0; i--) {
             Object[] temp = {"", "", "", ""};
             for (int j = 0; j < 4; j++) {
                 temp[j] = objects.get(i).select("td").get(j).text();
